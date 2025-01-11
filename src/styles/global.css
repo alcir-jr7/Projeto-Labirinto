@@ -5,19 +5,23 @@ html, body {
 }
 
 body {
-	color: #333;
+	color: #ffdfdf;
 	margin: 0;
 	padding: 8px;
 	box-sizing: border-box;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	background-color: lightyellow;
-	text-align: center;	
+	text-align: center;
+	background-image: url('/images/fundo.png');
+	background-size: cover; /* Ajusta a imagem para cobrir todo o fundo */
+	background-repeat: no-repeat; /* Evita que a imagem se repita */
+	background-position: center; /* Centraliza a imagem */
+		
 }
 
 h1 {
- 	color: purple;
+ 	color: rgb(255, 255, 255);
  	font-weight: bold;
- 	font-family: verdana;
+ 	font-family: Arial, Helvetica, sans-serif;
 }
 
 .menu {
@@ -29,7 +33,7 @@ h1 {
 	border-width: 3px;
 	width: 20%;
 	padding: 5px;
-	background-color: lightgrey;
+	background-color: rgb(218, 216, 233);
 	border: 3px solid black;
 	text-align: center;
 	text-decoration: none;
@@ -38,7 +42,7 @@ h1 {
 }
 
 .menu:hover{
-	background-color: #aaa;
+	background-color: rgb(113, 111, 129);
 }
 
 .menu:visited{
@@ -49,3 +53,38 @@ img.sobre {
 	max-width:25%;
 	max-height:25%;
 }
+
+/**/
+
+.quadro-autores {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	background-color: #dbcaca;
+	border: 3px solid #000000;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	width: 80%;
+	max-width: 600px;
+	margin: 20px auto;
+	text-align: center;
+}
+  
+.quadro-autores p {
+	margin: 10px 0;
+	font-size: 18px;
+	color: #000000;
+}
+  
+.logo {
+    display: block; /* Garante que a imagem será exibida como um bloco */
+    margin-left: auto;
+    margin-right: auto; /* Centraliza a imagem */
+    width: 250px; /* Define o tamanho da imagem */
+    height: auto; /* Mantém a proporção original da imagem */
+    border-radius: 8px; /* Adiciona cantos arredondados à imagem */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave ao redor da imagem */
+}
+
+

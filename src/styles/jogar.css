@@ -16,13 +16,13 @@ td.celula {
 }
 
 td.personagem {
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(3, 238, 255);
     cursor: pointer;
 }
 
 td.objetivo {
-    background-color: purple;
-    color: white;
+    background-color: rgb(240, 14, 14);
+    color: rgb(255, 255, 255);
 }
 
 td.bloco {

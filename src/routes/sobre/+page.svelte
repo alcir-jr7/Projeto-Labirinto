@@ -1,12 +1,15 @@
 <h1>Sobre</h1>
 
-<img class="sobre" src="/images/logoIFPE.png" alt="logo IPFE"/>
+<img class="sobre" src="/images/logoIFPE.jpg" alt="logo IPFE"/>
 
-<p>
-    Autor: Allan Diego Silva Lima
-</p>
-<p>
-  <a href="allan.lima@igarassu.ifpe.edu.br">allan.lima@igarassu.ifpe.edu.br</a>
-</p>
+<div class="quadro-autores">
 
-<a class="menu" href="/">Voltar ao Menu</a>
+  <p><strong>Autores:</strong></p>
+  <p>Alcir José | <a href="mailto:ajsj3@discente.ifpe.edu.br">ajsj3@discente.ifpe.edu.br</a></p>
+  <p>Jonatas candido | <a href="mailto:jon@discente.ifpe.edu.br">jon@discente.ifpe.edu.br</a></p>
+  <p>Luan Henrique | <a href="mailto:lhss5@discente.ifpe.edu.br">lhss5@discente.ifpe.edu.br</a></p>
+  <p>Marília Gabriela | <a href="mailto:mgsc2@discente.ifpe.edu.br">mgsc2@discente.ifpe.edu.br</a></p>
+  <p>Yara Regina | <a href="mailto:yrds@discente.ifpe.edu.br">yrds@discente.ifpe.edu.br</a></p>
+</div>
+
+<a class="menu" href="/">VOLTAR AO MENU</a>

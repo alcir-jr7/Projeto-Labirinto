@@ -1,12 +1,15 @@
 <script lang="ts">
-    let tituloDoJogo : string = "Encontre o Tesouro"
+    let tituloDoJogo : string = "Escape the Maze"
 </script>
 
-<h1>
-    {tituloDoJogo}
-</h1>
+<div class="quadro-conteudo">
+  <h1>{tituloDoJogo}</h1>
 
-<br />
-<a class="menu" href="/jogar">Jogar</a>
-<br />
-<a class="menu" href="/sobre">Sobre</a>
+  <img class="logo" src="/images/emp.png" alt="logo IPFE"/>
+
+  <br />
+  <br />
+  <a class="menu" href="/jogar">JOGAR</a>
+  <br />
+  <a class="menu" href="/sobre">SOBRE</a>
+</div>
