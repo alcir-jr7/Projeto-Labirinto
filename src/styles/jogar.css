@@ -10,10 +10,12 @@ td.celula {
     border-color: black;
     text-align: center;
     font-weight: bold;
-    vertical-align: center;
-    height: 50px;
-    width: 50px;
+    vertical-align: middle; /* Corrige 'center' para o valor correto */
+    height: 30px;
+    width: 30px;
+    background-color: white; /* Define o fundo branco */
 }
+
 
 td.personagem {
     background-color: rgb(3, 238, 255);
@@ -26,6 +28,6 @@ td.objetivo {
 }
 
 td.bloco {
-    background-color: black;
+    background-color: rgb(109, 12, 91);
     color: white;
 }

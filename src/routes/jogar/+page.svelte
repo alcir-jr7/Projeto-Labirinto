@@ -1,94 +1,148 @@
 <script lang="ts">
-    import { goto } from '$app/navigation'    
-    
-    // tipo para guardar as coordenadas do personagem e do objetivo
+    import { goto } from '$app/navigation';
+
     class Coordenada {
-        linha : number
-        coluna : number
+        linha : number;
+        coluna : number;
     }
 
-    // representa estado do jogo, contendo o mapa e a locação do personagem e do objetivo 
     class EstadoJogo {
-        posicaoPersonagem : Coordenada
-        posicaoObjetivo : Coordenada
-        mapa : number[][]
+        posicaoPersonagem : Coordenada;
+        posicaoObjetivo : Coordenada;
+        mapa : number[][];
+        fase : number;
+        tempoRestante : number;
+        tempoAcabou : boolean;
     }
 
-    // cria o estado do jogo
-    function inicializarJogo() : EstadoJogo {
-        let personagem : Coordenada = new Coordenada()
-        personagem.linha = 0
-        personagem.coluna = 0
+    function inicializarJogo(fase: number) : EstadoJogo {
+        let personagem : Coordenada = new Coordenada();
+        personagem.linha = 0;
+        personagem.coluna = 0;
 
-        let objetivo : Coordenada = new Coordenada()
-        objetivo.linha = 9
-        objetivo.coluna = 9
+        let objetivo : Coordenada = new Coordenada();
+        
+        let mapa : number[][] = [];
+        let tempoFase: number;  // Nova variável para armazenar o tempo de cada fase
 
-        let mapa : number[][] = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                         [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
-                         [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-                         [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-                         [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-                         [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-                         [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                        ]
+        if (fase === 1) {
+            objetivo.linha = 5;
+            objetivo.coluna = 5;
+            mapa = [[0, 1, 0, 0, 0, 0],
+                    [0, 1, 0, 1, 1, 0],
+                    [0, 0, 0, 1, 0, 0],
+                    [1, 1, 0, 1, 0, 1],
+                    [0, 0, 0, 1, 0, 0],
+                    [0, 1, 0, 0, 0, 0]];
+            tempoFase = 20; // Tempo para a fase 1
+        } else if (fase === 2) {
+            objetivo.linha = 7;
+            objetivo.coluna = 7;
+            mapa = [[0, 1, 0, 0, 0, 0, 0, 0],
+                    [0, 1, 0, 1, 1, 1, 0, 0],
+                    [0, 0, 0, 1, 0, 0, 0, 1],
+                    [1, 1, 0, 1, 0, 1, 1, 0],
+                    [0, 0, 0, 1, 0, 0, 0, 0],
+                    [0, 1, 1, 1, 1, 1, 1, 0],
+                    [0, 0, 0, 0, 0, 1, 0, 0],
+                    [0, 1, 1, 1, 1, 1, 0, 0]];
+            tempoFase = 25; // Tempo para a fase 2
+        } else if (fase === 3) {
+            objetivo.linha = 9;
+            objetivo.coluna = 9;
+            mapa = [[0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+                    [0, 1, 0, 1, 1, 1, 0, 0, 1, 0],
+                    [0, 0, 0, 1, 0, 0, 1, 0, 1, 0],
+                    [1, 1, 0, 1, 0, 1, 1, 1, 0, 0],
+                    [0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+                    [0, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+                    [0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
+                    [0, 1, 1, 0, 1, 1, 0, 1, 0, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 1, 1, 1, 0, 1, 0, 1, 0, 0]];
+            tempoFase = 30; // Tempo para a fase 3
+        }
 
-        let estado : EstadoJogo = new EstadoJogo()
-        estado.posicaoPersonagem = personagem
-        estado.posicaoObjetivo = objetivo
-        estado.mapa = mapa
+        let estado : EstadoJogo = new EstadoJogo();
+        estado.posicaoPersonagem = personagem;
+        estado.posicaoObjetivo = objetivo;
+        estado.mapa = mapa;
+        estado.fase = fase;
+        estado.tempoRestante = tempoFase;  // Define o tempo de cada fase
+        estado.tempoAcabou = false;
 
         return estado;
-        
     }
 
-    // detecta quando o personagem faz um movimento inválido 
     function houveColisao(posicao : Coordenada, jogo : EstadoJogo) : boolean {
         return (posicao.linha < 0 || posicao.coluna < 0)
             || (posicao.linha >= jogo.mapa.length || posicao.coluna >= jogo.mapa[0].length)
-            || jogo.mapa[posicao.linha][posicao.coluna] == 1
+            || jogo.mapa[posicao.linha][posicao.coluna] == 1;
     }
 
-    // trata o evento de perssionar as setas no teclado
- 	function onKeyDown(evento) : void {
-        let novaPosicao = new Coordenada()
-        novaPosicao.linha = jogo.posicaoPersonagem.linha
-        novaPosicao.coluna = jogo.posicaoPersonagem.coluna
+    function onKeyDown(evento) : void {
+        if (jogo.tempoAcabou) return; // Impede movimentação se o tempo acabou
 
-		 switch(evento.keyCode) {
-			 case 38: // up
-                novaPosicao.linha--
-				break;
-			 case 40: // down
-                novaPosicao.linha++
-				break;
-			 case 37: // left
-                novaPosicao.coluna--
-				break;
-			 case 39: // right
-                novaPosicao.coluna++
-				break;
-		 }
+        let novaPosicao = new Coordenada();
+        novaPosicao.linha = jogo.posicaoPersonagem.linha;
+        novaPosicao.coluna = jogo.posicaoPersonagem.coluna;
 
-        if (novaPosicao.linha == jogo.posicaoObjetivo.linha && novaPosicao.coluna == jogo.posicaoObjetivo.linha) {
-            alert("Parabéns, você chegou ao objetivo")
-            goto("/")
+        switch(evento.keyCode) {
+            case 38: // up
+                novaPosicao.linha--;
+                break;
+            case 40: // down
+                novaPosicao.linha++;
+                break;
+            case 37: // left
+                novaPosicao.coluna--;
+                break;
+            case 39: // right
+                novaPosicao.coluna++;
+                break;
         }
 
-        if(!houveColisao(novaPosicao, jogo)) {
-            jogo.posicaoPersonagem = novaPosicao
+        if (novaPosicao.linha == jogo.posicaoObjetivo.linha && novaPosicao.coluna == jogo.posicaoObjetivo.coluna) {
+            alert("Parabéns, você chegou ao objetivo na fase " + jogo.fase);
+            if (jogo.fase < 3) {
+                jogo = inicializarJogo(jogo.fase + 1);
+                jogo.posicaoPersonagem.linha = 0; // Reseta o personagem ao topo
+            } else {
+                alert("Você completou todas as fases!");
+                limparTempo();  // Chama a função para limpar o intervalo
+                goto("/"); // Redireciona para a página inicial
+            }
         }
-	}
 
-    // cria o objeto contendo o estado do jogo
-    let jogo : EstadoJogo = inicializarJogo()
-    
+        if (!houveColisao(novaPosicao, jogo)) {
+            jogo.posicaoPersonagem = novaPosicao;
+        }
+    }
+
+    function diminuirTempo() {
+        if (jogo.tempoRestante > 0) {
+            jogo.tempoRestante--;
+        } else if (!jogo.tempoAcabou) {
+            jogo.tempoAcabou = true;  // Marca que o tempo acabou
+            alert("Tempo esgotado! Você perdeu a partida.");
+            limparTempo();  // Chama a função para limpar o intervalo
+            goto("/");  // Redireciona para a página inicial
+        }
+    }
+
+    function limparTempo() {
+        clearInterval(tempoInterval);  // Limpa o intervalo do tempo
+    }
+
+    let jogo : EstadoJogo = inicializarJogo(1);
+
+    // Inicia o contador de tempo a cada 1000ms (1 segundo)
+    const tempoInterval = setInterval(diminuirTempo, 1000);
 </script>
 
-<h1>Movimente o personagem (quadrado cinza) até o objetivo (quadrado roxo)</h1>
+<h1>Escape the Maze</h1>
+
+<p>Tempo restante: {jogo.tempoRestante} segundos</p> <!-- Exibe o tempo restante -->
 
 <table>
     {#each jogo.mapa as linha, i}
@@ -110,6 +164,6 @@
 
 <br />
 
-<a class="menu" href="/">Voltar ao Menu</a>
+<a class="menu" href="/" on:click|preventDefault={() => { limparTempo(); goto("/"); }}>VOLTAR AO MENU</a>
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
