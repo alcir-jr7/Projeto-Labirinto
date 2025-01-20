@@ -1,30 +1,36 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
+    import { onDestroy } from 'svelte';  // Importando para limpar o intervalo quando o componente for destruído
 
     class Coordenada {
-        linha : number;
-        coluna : number;
+        linha: number;
+        coluna: number;
     }
 
     class EstadoJogo {
-        posicaoPersonagem : Coordenada;
-        posicaoObjetivo : Coordenada;
-        mapa : number[][];
-        fase : number;
-        tempoRestante : number;
-        tempoAcabou : boolean;
+        posicaoPersonagem: Coordenada;
+        posicaoObjetivo: Coordenada;
+        mapa: number[][];
+        fase: number;
+        tempoRestante: number;
+        tempoAcabou: boolean;
     }
 
-    function inicializarJogo(fase: number) : EstadoJogo {
-        let personagem : Coordenada = new Coordenada();
+   
+
+
+    // Função para inicializar o jogo em uma fase
+    function inicializarJogo(fase: number): EstadoJogo {
+        let personagem: Coordenada = new Coordenada();
         personagem.linha = 0;
         personagem.coluna = 0;
 
-        let objetivo : Coordenada = new Coordenada();
+        let objetivo: Coordenada = new Coordenada();
         
-        let mapa : number[][] = [];
-        let tempoFase: number;  // Nova variável para armazenar o tempo de cada fase
+        let mapa: number[][] = [];
+        let tempoFase: number;
 
+        // Definindo o mapa e o tempo de cada fase
         if (fase === 1) {
             objetivo.linha = 5;
             objetivo.coluna = 5;
@@ -34,7 +40,7 @@
                     [1, 1, 0, 1, 0, 1],
                     [0, 0, 0, 1, 0, 0],
                     [0, 1, 0, 0, 0, 0]];
-            tempoFase = 20; // Tempo para a fase 1
+            tempoFase = 25; // Tempo para a fase 1
         } else if (fase === 2) {
             objetivo.linha = 7;
             objetivo.coluna = 7;
@@ -46,7 +52,7 @@
                     [0, 1, 1, 1, 1, 1, 1, 0],
                     [0, 0, 0, 0, 0, 1, 0, 0],
                     [0, 1, 1, 1, 1, 1, 0, 0]];
-            tempoFase = 25; // Tempo para a fase 2
+            tempoFase = 20; // Tempo para a fase 2
         } else if (fase === 3) {
             objetivo.linha = 9;
             objetivo.coluna = 9;
@@ -60,10 +66,10 @@
                     [0, 1, 1, 0, 1, 1, 0, 1, 0, 1],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
                     [1, 1, 1, 1, 0, 1, 0, 1, 0, 0]];
-            tempoFase = 30; // Tempo para a fase 3
+            tempoFase = 15; // Tempo para a fase 3
         }
 
-        let estado : EstadoJogo = new EstadoJogo();
+        let estado: EstadoJogo = new EstadoJogo();
         estado.posicaoPersonagem = personagem;
         estado.posicaoObjetivo = objetivo;
         estado.mapa = mapa;
@@ -74,13 +80,15 @@
         return estado;
     }
 
-    function houveColisao(posicao : Coordenada, jogo : EstadoJogo) : boolean {
+    // Função para verificar colisões no mapa
+    function houveColisao(posicao: Coordenada, jogo: EstadoJogo): boolean {
         return (posicao.linha < 0 || posicao.coluna < 0)
             || (posicao.linha >= jogo.mapa.length || posicao.coluna >= jogo.mapa[0].length)
             || jogo.mapa[posicao.linha][posicao.coluna] == 1;
     }
 
-    function onKeyDown(evento) : void {
+    // Função chamada quando uma tecla é pressionada
+    function onKeyDown(evento) {
         if (jogo.tempoAcabou) return; // Impede movimentação se o tempo acabou
 
         let novaPosicao = new Coordenada();
@@ -119,9 +127,10 @@
         }
     }
 
+    // Função que diminui o tempo
     function diminuirTempo() {
         if (jogo.tempoRestante > 0) {
-            jogo.tempoRestante--;
+            jogo.tempoRestante--;  // Diminui o tempo restante
         } else if (!jogo.tempoAcabou) {
             jogo.tempoAcabou = true;  // Marca que o tempo acabou
             alert("Tempo esgotado! Você perdeu a partida.");
@@ -130,14 +139,22 @@
         }
     }
 
+    // Função para limpar o intervalo do tempo
     function limparTempo() {
         clearInterval(tempoInterval);  // Limpa o intervalo do tempo
     }
 
-    let jogo : EstadoJogo = inicializarJogo(1);
+    // Inicializa o jogo na primeira fase
+    let jogo: EstadoJogo = inicializarJogo(1);
 
     // Inicia o contador de tempo a cada 1000ms (1 segundo)
-    const tempoInterval = setInterval(diminuirTempo, 1000);
+    let tempoInterval = setInterval(diminuirTempo, 1000);
+
+    // Limpa o intervalo quando o componente for destruído
+    onDestroy(() => {
+        clearInterval(tempoInterval);
+    });
+
 </script>
 
 <h1>Escape the Maze</h1>
@@ -148,18 +165,12 @@
     {#each jogo.mapa as linha, i}
         <tr>
             {#each linha as celula, j}
-                {#if i == jogo.posicaoPersonagem.linha &&  j == jogo.posicaoPersonagem.coluna}
-                    <td class="celula personagem"></td>
-                {:else if i == jogo.posicaoObjetivo.linha &&  j == jogo.posicaoObjetivo.coluna}
-                    <td class="celula objetivo"></td>
-                {:else if jogo.mapa[i][j] == 0}
-                    <td class="celula"></td>
-                {:else}
-                    <td class="celula bloco"></td>
-                {/if}
+                <td class="celula {i === jogo.posicaoPersonagem.linha && j === jogo.posicaoPersonagem.coluna ? 'personagem' : 
+                                  i === jogo.posicaoObjetivo.linha && j === jogo.posicaoObjetivo.coluna ? 'objetivo' : 
+                                  jogo.mapa[i][j] === 0 ? '' : 'bloco'}"></td>
             {/each}
         </tr>
-    {/each}    
+    {/each}
 </table>
 
 <br />
@@ -167,3 +178,9 @@
 <a class="menu" href="/" on:click|preventDefault={() => { limparTempo(); goto("/"); }}>VOLTAR AO MENU</a>
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
+
+
+<audio autoplay loop>
+    <source src="/audio/suspense.mp3" type="audio/mp3">
+    Seu navegador não suporta o elemento de áudio.
+  </audio>
