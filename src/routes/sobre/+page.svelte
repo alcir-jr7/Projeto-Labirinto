@@ -13,3 +13,8 @@
 </div>
 
 <a class="menu" href="/">VOLTAR AO MENU</a>
+
+<audio autoplay loop>
+  <source src="/audio/aventura.mp3" type="audio/mp3">
+  Seu navegador não suporta o elemento de áudio.
+</audio>
