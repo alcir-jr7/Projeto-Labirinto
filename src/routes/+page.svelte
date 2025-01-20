@@ -5,11 +5,20 @@
   let musicaLigada: boolean = true;
   let efeitosLigados: boolean = true;
 
+  // Criar referência para o elemento de música
+  let musica: HTMLAudioElement;
+
+  // Função para alternar música
   function alternarMusica(): void {
-      musicaLigada = !musicaLigada;
-      // Lógica para tocar/parar música pode ser adicionada aqui
+    musicaLigada = !musicaLigada;
+    if (musicaLigada) {
+      musica.play(); // Toca a música
+    } else {
+      musica.pause(); // Pausa a música
+    }
   }
 
+  // Função para alternar efeitos sonoros
   function alternarEfeitos(): void {
       efeitosLigados = !efeitosLigados;
       // Lógica para ativar/desativar efeitos sonoros pode ser adicionada aqui
@@ -37,3 +46,9 @@
       <img src="/images/efeitos.jpeg" alt="Efeitos" class="{efeitosLigados ? 'ativo' : 'desligado'}" />
   </button>
 </div>
+
+<!-- Elemento de áudio para a música -->
+<audio autoplay loop>
+  <source src="/audio/esporte1.mp3" type="audio/mp3">
+  Seu navegador não suporta o elemento de áudio.
+</audio>
