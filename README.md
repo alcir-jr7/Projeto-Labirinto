@@ -42,22 +42,22 @@ TypeScript: Para adicionar tipagem e robustez ao código.
 
 1. Clone este repositório:
 
-git clone <url-do-repositorio>
+Comando: git clone url-do-repositorio
 
 
 2. Acesse o diretório do projeto:
 
-cd labirinto
+Comando: cd labirinto
 
 
 3. Instale as dependências:
 
-npm install
+Comando: npm install
 
 
 4. Execute o servidor de desenvolvimento:
 
-npm run dev
+Comando: npm run dev
 
 
 5. Abra o navegador e acesse o endereço indicado (geralmente http://localhost:5173).
