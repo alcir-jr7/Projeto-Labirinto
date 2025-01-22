@@ -16,12 +16,6 @@
         tempoAcabou: boolean;
     }
 
-<<<<<<< HEAD
-=======
-   
-
-
->>>>>>> 65857543419a99c60845b2321474421098b2bbd2
     // Função para inicializar o jogo em uma fase
     function inicializarJogo(fase: number): EstadoJogo {
         let personagem: Coordenada = new Coordenada();
@@ -170,15 +164,11 @@
             {#each linha as celula, j}
                 <td class="celula {i === jogo.posicaoPersonagem.linha && j === jogo.posicaoPersonagem.coluna ? 'personagem' : 
                                   i === jogo.posicaoObjetivo.linha && j === jogo.posicaoObjetivo.coluna ? 'objetivo' : 
-<<<<<<< HEAD
                                   jogo.mapa[i][j] === 0 ? '' : 'bloco'}">
                     {#if i === jogo.posicaoPersonagem.linha && j === jogo.posicaoPersonagem.coluna}
                         <img src="/images/personagem.gif" alt="Personagem" class="personagem-gif" />
                     {/if}
                 </td>
-=======
-                                  jogo.mapa[i][j] === 0 ? '' : 'bloco'}"></td>
->>>>>>> 65857543419a99c60845b2321474421098b2bbd2
             {/each}
         </tr>
     {/each}
@@ -190,15 +180,7 @@
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
-<<<<<<< HEAD
 <audio autoplay loop>
     <source src="/audio/suspense.mp3" type="audio/mp3">
     Seu navegador não suporta o elemento de áudio.
 </audio>
-=======
-
-<audio autoplay loop>
-    <source src="/audio/suspense.mp3" type="audio/mp3">
-    Seu navegador não suporta o elemento de áudio.
-  </audio>
->>>>>>> 65857543419a99c60845b2321474421098b2bbd2

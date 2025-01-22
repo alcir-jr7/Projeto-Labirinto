@@ -50,11 +50,7 @@
 </div>
 
 <!-- Elemento de áudio para a música -->
-<<<<<<< HEAD
 <audio id="musica" autoplay loop>
-=======
-<audio autoplay loop>
->>>>>>> 65857543419a99c60845b2321474421098b2bbd2
   <source src="/audio/esporte1.mp3" type="audio/mp3">
   Seu navegador não suporta o elemento de áudio.
 </audio>
