@@ -64,50 +64,6 @@ npm run dev
 
 ---
 
-<<<<<<< HEAD
-👥 Contribuidores
-=======
-
-
-
-## PT ###
-
-#criar Svelt
-
-Tudo que você precisa para construir um projeto Svelte, desenvolvido por [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
-
-## Criando um projeto
-
-Se você está vendo isso, provavelmente já realizou esta etapa. Parabéns!
-
-```bash
-#cria um novo projeto no diretório atual
-npm criar esbelto@mais recente
-
-#crie um novo projeto em my-app
-npm create svelte@mais recente meu aplicativo
-```
-
-## Desenvolvimento
-
-Depois de criar um projeto e instalar dependências com `npm install` (ou `pnpm install` ou `yarn`), inicie um servidor de desenvolvimento:
-
-```bash
-npm executar dev
-
-# ou inicie o servidor e abra o aplicativo em uma nova aba do navegador
-npm execute dev ---open
-```
-
-## Prédio
-
-Para criar uma versão de produção do seu aplicativo:
-
-```bash
-npm run build
-```
->>>>>>> 65857543419a99c60845b2321474421098b2bbd2
-
 Este projeto foi desenvolvido pelos alunos do IFPE - Campus Igarassu:
 
 Alcir José
