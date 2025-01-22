@@ -11,16 +11,27 @@ td.celula {
     text-align: center;
     font-weight: bold;
     vertical-align: middle; /* Corrige 'center' para o valor correto */
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     background-color: white; /* Define o fundo branco */
 }
 
 
 td.personagem {
-    background-color: rgb(3, 238, 255);
+    background-color: rgb(228, 228, 228);
     cursor: pointer;
+    text-align: center; /* Alinha o conteúdo da célula ao centro */
+    padding: 0; /* Remove qualquer padding da célula */
+    width: 38px; /* Ajuste o tamanho da célula */
+    height: 38px;
 }
+
+td.personagem img {
+    width: 100%; /* Ajusta o GIF para preencher toda a célula */
+    height: 100%;
+    object-fit: contain; /* Garante que o GIF se ajuste sem distorção */
+}
+
 
 td.objetivo {
     background-color: rgb(240, 14, 14);

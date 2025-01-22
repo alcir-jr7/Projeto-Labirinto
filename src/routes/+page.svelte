@@ -1,26 +1,37 @@
 <script lang="ts">
-  let tituloDoJogo: string = "Escape the Maze";
+  import { onMount } from 'svelte';
 
   // Estado dos botões
   let musicaLigada: boolean = true;
   let efeitosLigados: boolean = true;
 
+  // Criar referência para o elemento de música
+  let musica: HTMLAudioElement;
+
+  // Função para alternar música
   function alternarMusica(): void {
-      musicaLigada = !musicaLigada;
-      // Lógica para tocar/parar música pode ser adicionada aqui
+    musicaLigada = !musicaLigada;
+    if (musicaLigada) {
+      musica.play(); // Toca a música
+    } else {
+      musica.pause(); // Pausa a música
+    }
   }
 
+  // Função para alternar efeitos sonoros
   function alternarEfeitos(): void {
       efeitosLigados = !efeitosLigados;
       // Lógica para ativar/desativar efeitos sonoros pode ser adicionada aqui
   }
+
+  // Aguardar o componente ser montado antes de associar o áudio
+  onMount(() => {
+    musica = document.getElementById('musica') as HTMLAudioElement;
+  });
 </script>
 
 <div class="quadro-conteudo">
-  <h1>{tituloDoJogo}</h1>
-
-  <img class="logo" src="/images/emp.png" alt="logo IPFE" />
-
+  <img class="logo" src="/images/logogame.png" alt="logo IPFE" />
   <br />
   <br />
   <a class="menu" href="/jogar">JOGAR</a>
@@ -31,9 +42,15 @@
 <!-- Botões no canto inferior direito -->
 <div class="configuracoes-som">
   <button class="botao-som musica" on:click={alternarMusica}>
-      <img src="/images/nota.jpeg" alt="Música" class="{musicaLigada ? 'ativo' : 'desligado'}" />
+    <img src="/images/nota.jpeg" alt="Música" class="{musicaLigada ? 'ativo' : 'desligado'}" />
   </button>
   <button class="botao-som efeitos" on:click={alternarEfeitos}>
-      <img src="/images/efeitos.jpeg" alt="Efeitos" class="{efeitosLigados ? 'ativo' : 'desligado'}" />
+    <img src="/images/efeitos.jpeg" alt="Efeitos" class="{efeitosLigados ? 'ativo' : 'desligado'}" />
   </button>
 </div>
+
+<!-- Elemento de áudio para a música -->
+<audio id="musica" autoplay loop>
+  <source src="/audio/esporte1.mp3" type="audio/mp3">
+  Seu navegador não suporta o elemento de áudio.
+</audio>

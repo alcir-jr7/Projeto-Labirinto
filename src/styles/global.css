@@ -18,14 +18,18 @@ body {
 }
 
 h1 {
- 	color: rgb(255, 255, 255);
- 	font-weight: bold;
- 	font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 38px;
+    -webkit-text-stroke: 2px black; /* Adiciona borda preta ao texto */
 }
+
 
 .menu {
 	display: block;
 	font-size: 20px;
+	font-weight: bold;
 	margin: auto;
 	margin-bottom: 5px;
 	border-style: solid;
@@ -53,7 +57,8 @@ img.sobre {
 	max-height:25%;
 }
 
-/**/
+
+/*Sobre, quadro de autores*/
 
 .quadro-autores {
 	display: flex;
@@ -72,15 +77,16 @@ img.sobre {
   
 .quadro-autores p {
 	margin: 10px 0;
-	font-size: 18px;
+	font-size: 17px;
 	color: #000000;
+	font-weight: bold;
 }
   
 .logo {
     display: block; /* Garante que a imagem será exibida como um bloco */
     margin-left: auto;
     margin-right: auto; /* Centraliza a imagem */
-    width: 250px; /* Define o tamanho da imagem */
+    width: 320px; /* Define o tamanho da imagem */
     height: auto; /* Mantém a proporção original da imagem */
     border-radius: 8px; /* Adiciona cantos arredondados à imagem */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave ao redor da imagem */
