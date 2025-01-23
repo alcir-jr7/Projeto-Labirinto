@@ -62,23 +62,24 @@ img.sobre {
 
 .quadro-autores {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 20px;
-	background-color: #dbcaca;
-	border: 3px solid #000000;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	width: 80%;
-	max-width: 600px;
-	margin: 20px auto;
-	text-align: center;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+background-color: rgba(219, 202, 202, 0.2); /* fundo opaco */
+border: 3px solid #000000;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+width: 80%;
+max-width: 600px;
+margin: 20px auto;
+text-align: center;
+
 }
   
 .quadro-autores p {
 	margin: 10px 0;
-	font-size: 17px;
-	color: #000000;
+	font-size: 22px;
+	color: #09090c;
 	font-weight: bold;
 }
   
