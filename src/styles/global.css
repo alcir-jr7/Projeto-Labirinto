@@ -21,7 +21,7 @@ h1 {
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-	font-size: 38px;
+	font-size: 33px;
     -webkit-text-stroke: 2px black; /* Adiciona borda preta ao texto */
 }
 
@@ -98,7 +98,7 @@ text-align: center;
 
 .configuracoes-som {
     position: absolute;
-    bottom: 20px;
+    bottom: 70px;
     right: 20px;
     display: flex;
     flex-direction: column;
@@ -123,6 +123,8 @@ text-align: center;
 }
 
 .botao-som img {
+    width: 50px;
+    height: 50px;
     width: 100%;
     height: 100%;
     transition: transform 0.3s ease, filter 0.3s ease;
@@ -148,3 +150,33 @@ text-align: center;
     }
 }
 
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro transparente */
+    z-index: 9999; /* Garante que o vídeo fique por cima de outros elementos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover; /* Faz o fundo cobrir toda a tela */
+    background-position: center; /* Garante que o fundo seja centralizado */
+}
+
+.video-container video {
+    width: 100%;  /* Faz o vídeo ocupar toda a largura da tela */
+    height: 100%; /* Faz o vídeo ocupar toda a altura da tela */
+    object-fit: cover; /* Faz o vídeo cobrir a tela sem distorcer, cortando as partes que ultrapassam */
+}
+
+button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 10000; /* Garante que o botão fique sobre o vídeo */
+}
