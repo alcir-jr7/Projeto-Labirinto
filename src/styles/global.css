@@ -93,6 +93,13 @@ text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave ao redor da imagem */
 }
 
+.quadro-conteudo .logo {
+    transition: transform 0.3s ease;
+}
+
+.quadro-conteudo .logo:hover {   
+  transform: scale(1.1); /* Efeito de aumentar a logo ao passar o mouse */
+  }
 
 /*Música e efeitos sonoros*/
 
@@ -116,6 +123,7 @@ text-align: center;
     overflow: hidden; /* Garante que os ícones não ultrapassem as bordas arredondadas */
     box-shadow: 0 4px 6px rgb(1, 165, 206); /* Adiciona uma sombra suave */
     transition: box-shadow 0.3s ease;
+
 }
 
 .botao-som:hover {
@@ -179,4 +187,6 @@ button {
     padding: 10px 20px;
     cursor: pointer;
     z-index: 10000; /* Garante que o botão fique sobre o vídeo */
+    transition: background-color 0.3s, transform 0.3s;
+    transform: scale(1.1);
 }
