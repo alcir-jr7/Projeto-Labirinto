@@ -108,7 +108,6 @@
         }
 
         if (novaPosicao.linha == jogo.posicaoObjetivo.linha && novaPosicao.coluna == jogo.posicaoObjetivo.coluna) {
-            alert("Parabéns, você chegou ao objetivo na fase " + jogo.fase);
             if (jogo.fase < 3) {
                 jogo = inicializarJogo(jogo.fase + 1);
                 jogo.posicaoPersonagem.linha = 0; // Reseta o personagem ao topo
