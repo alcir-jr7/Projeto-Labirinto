@@ -34,8 +34,10 @@ td.personagem img {
 
 
 td.objetivo {
-    background-color: rgb(240, 14, 14);
-    color: rgb(255, 255, 255);
+    background-image: url('/images/porta.jfif'); /* Caminho para a imagem */
+    background-size: cover;
+    background-position: center;
+    color: rgb(31, 3, 3); 
 }
 
 td.bloco {
