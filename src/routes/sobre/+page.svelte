@@ -12,6 +12,18 @@
   <p>Yara Regina | <a href="mailto:yrds@discente.ifpe.edu.br">yrds@discente.ifpe.edu.br</a></p>
 </div>
 
+<div class="comentario">
+  <p>
+    A inteligência artificial pode transformar a criação de jogos de labirinto ao gerar <br> 
+    layouts procedurais únicos e solucionáveis automaticamente. Ela ajusta a dificuldade <br>
+    em tempo real com base no desempenho do jogador, garantindo desafios equilibrados. <br>
+    A IA também valida o labirinto para garantir que ele seja funcional e sempre tenha <br>
+    uma solução. Além disso, pode criar ambientes dinâmicos, alterando efeitos visuais <br>
+    e sonoros para maior imersão. Esses recursos otimizam o desenvolvimento e elevam a <br>
+    experiência do jogador.
+  </p>
+</div>
+
 <a class="menu" href="/">VOLTAR AO MENU</a>
 
 <audio autoplay loop>
