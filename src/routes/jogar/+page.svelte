@@ -2,23 +2,38 @@
     import { goto } from '$app/navigation';
     import { onDestroy } from 'svelte';  // Importando para limpar o intervalo quando o componente for destruído
 
-    class Coordenada {
+     class Coordenada {
         linha: number;
         coluna: number;
-    }
+    
 
-    class EstadoJogo {
+    constructor (linha:number,coluna:number){
+        this.linha=linha;
+        this.coluna=coluna;
+    }
+}
+
+   class EstadoJogo {
         posicaoPersonagem: Coordenada;
         posicaoObjetivo: Coordenada;
         mapa: number[][];
         fase: number;
         tempoRestante: number;
         tempoAcabou: boolean;
+    
+    constructor (posicaoPersonagem: Coordenada, posicaoObjetivo:Coordenada,mapa: number[][], fase: number,tempoRestante: number,tempoAcabou: boolean){
+        this.posicaoPersonagem=posicaoPersonagem;
+        this.posicaoObjetivo=posicaoObjetivo;
+        this.mapa=mapa;
+        this.fase=fase;
+        this.tempoRestante=tempoRestante;
+        this.tempoAcabou=tempoAcabou;
     }
+}
 
     // Função para inicializar o jogo em uma fase
     function inicializarJogo(fase: number): EstadoJogo {
-        let personagem: Coordenada = new Coordenada();
+        let personagem: Coordenada = new Coordenada(0,0);
         personagem.linha = 0;
         personagem.coluna = 0;
 
