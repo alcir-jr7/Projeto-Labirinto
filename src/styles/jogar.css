@@ -45,6 +45,21 @@ td.bloco {
     color: white;
 }
 
+.tempo-restante {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6D0C5B; /* Laranja vibrante */
+    background-color: #ffffff; /* Fundo escuro para contraste */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px auto;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: all 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+
 
 
 

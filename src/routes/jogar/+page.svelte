@@ -32,17 +32,16 @@
 }
 
     // Função para inicializar o jogo em uma fase
-    function inicializarJogo(fase: number): EstadoJogo {
-        let personagem: Coordenada = new Coordenada(0,0);
+    function inicializarJogo(fase: number) : EstadoJogo {
+        let personagem : Coordenada = new Coordenada();
         personagem.linha = 0;
         personagem.coluna = 0;
 
-        let objetivo: Coordenada = new Coordenada();
+        let objetivo : Coordenada = new Coordenada();
         
-        let mapa: number[][] = [];
-        let tempoFase: number;
+        let mapa : number[][] = [];
+        let tempoFase: number;  // Nova variável para armazenar o tempo de cada fase
 
-        // Definindo o mapa e o tempo de cada fase
         if (fase === 1) {
             objetivo.linha = 5;
             objetivo.coluna = 5;
@@ -81,7 +80,7 @@
             tempoFase = 15; // Tempo para a fase 3
         }
 
-        let estado: EstadoJogo = new EstadoJogo();
+        let estado : EstadoJogo = new EstadoJogo();
         estado.posicaoPersonagem = personagem;
         estado.posicaoObjetivo = objetivo;
         estado.mapa = mapa;
@@ -92,15 +91,13 @@
         return estado;
     }
 
-    // Função para verificar colisões no mapa
-    function houveColisao(posicao: Coordenada, jogo: EstadoJogo): boolean {
+    function houveColisao(posicao : Coordenada, jogo : EstadoJogo) : boolean {
         return (posicao.linha < 0 || posicao.coluna < 0)
             || (posicao.linha >= jogo.mapa.length || posicao.coluna >= jogo.mapa[0].length)
             || jogo.mapa[posicao.linha][posicao.coluna] == 1;
     }
 
-    // Função chamada quando uma tecla é pressionada
-    function onKeyDown(evento) {
+    function onKeyDown(evento) : void {
         if (jogo.tempoAcabou) return; // Impede movimentação se o tempo acabou
 
         let novaPosicao = new Coordenada();
@@ -123,6 +120,7 @@
         }
 
         if (novaPosicao.linha == jogo.posicaoObjetivo.linha && novaPosicao.coluna == jogo.posicaoObjetivo.coluna) {
+            alert("Parabéns, você chegou ao objetivo na fase " + jogo.fase);
             if (jogo.fase < 3) {
                 jogo = inicializarJogo(jogo.fase + 1);
                 jogo.posicaoPersonagem.linha = 0; // Reseta o personagem ao topo
@@ -138,10 +136,9 @@
         }
     }
 
-    // Função que diminui o tempo
     function diminuirTempo() {
         if (jogo.tempoRestante > 0) {
-            jogo.tempoRestante--;  // Diminui o tempo restante
+            jogo.tempoRestante--;
         } else if (!jogo.tempoAcabou) {
             jogo.tempoAcabou = true;  // Marca que o tempo acabou
             alert("Tempo esgotado! Você perdeu a partida.");
@@ -150,27 +147,19 @@
         }
     }
 
-    // Função para limpar o intervalo do tempo
     function limparTempo() {
         clearInterval(tempoInterval);  // Limpa o intervalo do tempo
     }
 
-    // Inicializa o jogo na primeira fase
-    let jogo: EstadoJogo = inicializarJogo(1);
+    let jogo : EstadoJogo = inicializarJogo(1);
 
     // Inicia o contador de tempo a cada 1000ms (1 segundo)
-    let tempoInterval = setInterval(diminuirTempo, 1000);
-
-    // Limpa o intervalo quando o componente for destruído
-    onDestroy(() => {
-        clearInterval(tempoInterval);
-    });
-
+    const tempoInterval = setInterval(diminuirTempo, 1000);
 </script>
 
 <h1>Escape the Maze</h1>
 
-<p>Tempo restante: {jogo.tempoRestante} segundos</p> <!-- Exibe o tempo restante -->
+<p class="tempo-restante">Tempo restante: {jogo.tempoRestante} segundos</p> <!-- Exibe o tempo restante -->
 
 <table>
     {#each jogo.mapa as linha, i}
@@ -185,7 +174,7 @@
                 </td>
             {/each}
         </tr>
-    {/each}
+    {/each}  
 </table>
 
 <br />
@@ -198,3 +187,4 @@
     <source src="/audio/suspense.mp3" type="audio/mp3">
     Seu navegador não suporta o elemento de áudio.
 </audio>
+
