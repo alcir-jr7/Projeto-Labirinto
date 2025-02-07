@@ -20,6 +20,10 @@ body {
     background-attachment: fixed;
 }
 
+h2{
+    color: #f0f5f1;
+}
+
 h1 {
     color: rgb(255, 255, 255);
     font-weight: bold;
@@ -82,7 +86,7 @@ text-align: center;
 .quadro-autores p {
 	margin: 10px 0;
 	font-size: 22px;
-	color: #19a525;
+	color: #f0f5f1;
 	font-weight: bold;
     text-shadow:   
        2px  2px 0 black; /* Cria a borda preta */
@@ -90,7 +94,7 @@ text-align: center;
 
 
 .email {
-    color: rgb(47, 139, 52); /* Muda a cor do email */
+    color: rgb(231, 240, 232); /* Muda a cor do email */
     font-weight: bold; /* Deixa o email em negrito */
     text-decoration: underline; /* Mantém o sublinhado */
   }
@@ -148,6 +152,27 @@ text-align: center;
     height: 100%;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
+
+/* Ícone girando quando a música está ligada */
+.botao-som.musica img.ativo {
+    animation: girar 2s linear infinite;
+}
+
+/* Efeito desligado com brilho reduzido para deixar o ícone "apagado" */
+.botao-som img.desligado {
+    filter: brightness(0.3); /* Reduz o brilho, deixando o ícone mais escuro */
+}
+
+/* Animação de rotação */
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 
 /* Ícone girando quando a música está ligada */
 .botao-som.musica img.ativo {
