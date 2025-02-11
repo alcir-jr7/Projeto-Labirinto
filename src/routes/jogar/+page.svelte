@@ -7,7 +7,7 @@
         coluna: number;
     
 
-    constructor (linha:number,coluna:number){
+    constructor (linha:number=0,coluna:number=0){
         this.linha=linha;
         this.coluna=coluna;
     }
@@ -33,7 +33,7 @@
 
     // Função para inicializar o jogo em uma fase
     function inicializarJogo(fase: number) : EstadoJogo {
-        let personagem : Coordenada = new Coordenada();
+        let personagem : Coordenada = new Coordenada(0,0);
         personagem.linha = 0;
         personagem.coluna = 0;
 
