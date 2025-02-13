@@ -173,24 +173,3 @@ text-align: center;
     }
 }
 
-
-/* Ícone girando quando a música está ligada */
-.botao-som.musica img.ativo {
-    animation: girar 2s linear infinite;
-}
-
-/* Efeito desligado com brilho reduzido para deixar o ícone "apagado" */
-.botao-som img.desligado {
-    filter: brightness(0.3); /* Reduz o brilho, deixando o ícone mais escuro */
-}
-
-/* Animação de rotação */
-@keyframes girar {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
