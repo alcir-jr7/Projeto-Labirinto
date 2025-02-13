@@ -50,3 +50,8 @@
   </button>
 </div>
 
+<!-- Elemento de áudio -->
+<audio id="musica" autoplay loop muted>
+  <source src="/audio/esporte1.mp3" type="audio/mp3">
+  Seu navegador não suporta o elemento de áudio.
+</audio>
