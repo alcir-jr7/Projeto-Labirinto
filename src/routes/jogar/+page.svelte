@@ -2,12 +2,24 @@
     import { goto } from '$app/navigation';
     import { onDestroy } from 'svelte';  // Importando para limpar o intervalo quando o componente for destruído
 
+    let audio:any;  // Variável para controlar o áudio
+  let musicaLigada = false;  // Controle de reprodução (se a música está ligada ou não)
+
+  // Função para alternar entre tocar e pausar a música
+  function alternarMusica() {
+    if (musicaLigada) {
+      audio.pause();  // Pausa o áudio
+    } else {
+      audio.play();  // Inicia o áudio
+    }
+    musicaLigada = !musicaLigada;  // Alterna o estado de música ligada/desligada
+  }
      class Coordenada {
         linha: number;
         coluna: number;
     
 
-    constructor (linha:number,coluna:number){
+    constructor (linha:number=0,coluna:number=0){
         this.linha=linha;
         this.coluna=coluna;
     }
@@ -30,6 +42,7 @@
         this.tempoAcabou=tempoAcabou;
     }
 }
+
 
     // Função para inicializar o jogo em uma fase
     function inicializarJogo(fase: number) : EstadoJogo {
@@ -183,10 +196,15 @@
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
-<audio autoplay loop>
+<div class="configuracoes-som">
+    
+<button class="botao-som musica" on:click={alternarMusica}>
+    <img src="/images/nota.jpeg" alt="musica" class="{musicaLigada ? 'ativo' : 'desligado'}" />
+  </button>
+  
+  
+  <audio bind:this={audio} loop>
     <source src="/audio/suspense.mp3" type="audio/mp3">
     Seu navegador não suporta o elemento de áudio.
-</audio>
-
-
-
+  </audio>
+</div>
