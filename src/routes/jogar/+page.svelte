@@ -7,7 +7,7 @@
         coluna: number;
     
 
-    constructor (linha:number=0,coluna:number=0){
+    constructor (linha:number,coluna:number){
         this.linha=linha;
         this.coluna=coluna;
     }
@@ -33,7 +33,7 @@
 
     // Função para inicializar o jogo em uma fase
     function inicializarJogo(fase: number) : EstadoJogo {
-        let personagem : Coordenada = new Coordenada(0,0);
+        let personagem : Coordenada = new Coordenada();
         personagem.linha = 0;
         personagem.coluna = 0;
 
@@ -182,6 +182,11 @@
 <a class="menu" href="/" on:click|preventDefault={() => { limparTempo(); goto("/"); }}>VOLTAR AO MENU</a>
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
+
+<audio autoplay loop>
+    <source src="/audio/suspense.mp3" type="audio/mp3">
+    Seu navegador não suporta o elemento de áudio.
+</audio>
 
 
 
